@@ -1,0 +1,32 @@
+# Assignment handout (copyrighted, not for redistribution)
+COSC 520*.pdf
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Downloaded BHOSLIB/FRB graphs (fetched by scripts/download_dataset.py, see data/README.md)
+data/*.zip
+data/*.mtx
+data/cache/
+
+# Output of the --quick benchmark (the full results are committed)
+results/quick/
+
+# Overleaf upload bundle and LaTeX build files
+*.zip
+report/*.aux
+report/*.bbl
+report/*.blg
+report/*.log
+report/*.out
+report/*.fls
+report/*.fdb_latexmk
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
