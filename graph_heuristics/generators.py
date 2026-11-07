@@ -3,6 +3,8 @@
 * :func:`random_graph`: uniform G(n, m), used for the scaling benchmark.
 * :func:`planted_graph`: a small graph with the same known optima as the FRB
   benchmark graphs, so the tests and the demo need no download.
+* :func:`random_relabeling`: an isomorphic copy with random vertex numbers
+  and edge order, so that "arbitrary" orders carry no hidden information.
 * Small families with known answers, used by the tests and the demo:
   paths, cycles, stars, complete and complete bipartite graphs, perfect
   matchings, and two graphs on which the natural greedy order is as bad as
@@ -17,6 +19,7 @@ AI-assisted: generated with Claude Code; reviewed and tested by Ahmed Elgazwy
 from __future__ import annotations
 
 import random
+from array import array
 
 from graph_heuristics.graph import Graph
 
@@ -94,6 +97,35 @@ def planted_graph(groups: int, size: int, density: float, seed: int = 0) -> tupl
             if (is_hidden[u] and is_hidden[v]) or rng.random() < density:
                 edges.append((u, v))
     return Graph.from_edges(n, edges), hidden
+
+
+def random_relabeling(graph: Graph, seed: int = 0) -> tuple[Graph, list[int]]:
+    """An isomorphic copy with random vertex numbers and a random edge order.
+
+    "Arbitrary" vertex and edge orders in the lecture algorithms should not
+    carry information about the solution. The FRB files number their
+    vertices group by group, which hands the natural greedy order the planted
+    coloring. A random relabeling removes that.
+
+    Args:
+        graph: The graph to copy.
+        seed: Random seed.
+
+    Returns:
+        ``(copy, new_number)``: vertex v of ``graph`` is vertex
+        ``new_number[v]`` of the copy, and the edges are listed in random order.
+
+    Complexity: O(n + m) time and space.
+    """
+    rng = random.Random(seed)
+    new_number = list(range(graph.n))
+    rng.shuffle(new_number)
+    order = list(range(graph.m))
+    rng.shuffle(order)
+    edge_u, edge_v = graph.edge_u, graph.edge_v
+    new_u = array("i", [new_number[edge_u[i]] for i in order])
+    new_v = array("i", [new_number[edge_v[i]] for i in order])
+    return Graph(graph.n, new_u, new_v), new_number  # a bijection keeps the graph simple
 
 
 def path_graph(n: int) -> Graph:

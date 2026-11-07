@@ -18,6 +18,7 @@ from graph_heuristics.generators import (
     perfect_matching_graph,
     planted_graph,
     random_graph,
+    random_relabeling,
     random_tree,
     star_graph,
 )
@@ -61,6 +62,17 @@ def test_planted_graph_optima_by_brute_force() -> None:
     graph, _ = planted_graph(groups=3, size=3, density=0.5, seed=4)
     assert brute_force_chromatic_number(graph) == 3
     assert brute_force_min_cover_size(graph.complement()) == 3 * (3 - 1)
+
+
+def test_random_relabeling_is_an_isomorphic_copy() -> None:
+    graph = random_graph(200, 1_500, seed=6)
+    copy, new_number = random_relabeling(graph, seed=7)
+    assert sorted(new_number) == list(range(200))
+    assert (copy.n, copy.m) == (graph.n, graph.m)
+    mapped = {frozenset((new_number[u], new_number[v])) for u, v in graph.edges()}
+    assert mapped == {frozenset(e) for e in copy.edges()}
+    assert list(copy.edges()) != list(graph.edges())
+    assert random_relabeling(graph, seed=7)[1] == new_number  # deterministic
 
 
 def test_small_families() -> None:
