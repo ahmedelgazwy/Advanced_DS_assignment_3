@@ -16,7 +16,7 @@
 
 \begin{document}
 
-\title{Vertex Cover and Greedy Coloring on Hard Benchmark Graphs: Two Simple Heuristics Each, Measured Against Exact Optima}
+\title[Vertex Cover and Greedy Coloring on Hard Benchmark Graphs]{Vertex Cover and Greedy Coloring on Hard Benchmark Graphs: Two Simple Heuristics Each, Measured Against Exact Optima}
 \subtitle{COSC 520 Assignment 3 --- Student number 84298512}
 
 \author{Ahmed Elgazwy}
@@ -123,7 +123,7 @@ $\log_2 n+1$ colors for a tree~\cite{gyarfas1988}.
 \subsection{The smallest-last ordering}
 \label{sec:sl}
 
-The csc09 paper~\cite{gebremedhin2009} describes four degree-based orderings:
+The CSC09 paper of Gebremedhin et al.~\cite{gebremedhin2009} describes four degree-based orderings:
 largest first~\cite{welsh1967}, incidence degree, dynamic largest first and
 smallest last; the graph coloring page of Chiarandini~\cite{chiarandini} lists
 further heuristics such as DSATUR~\cite{brelaz1979}. We chose \emph{smallest last} (SL)~\cite{matula1983}. It builds
@@ -153,7 +153,7 @@ $d\le5$.
   \node[v,label={[r]below:6th, deg 1}] (0) at (0,0) {0};
   \node[v,label={[r]below:5th, deg 2}] (1) at (1.6,0) {1};
   \node[v,label={[r]left:8th, deg 0}] (2) at (0,1.4) {2};
-  \node[v,label={[r]below right:7th, deg 1}] (3) at (1.6,1.4) {3};
+  \node[v,label={[r]above right:7th, deg 1}] (3) at (1.6,1.4) {3};
   \node[v,label={[r]above:4th, deg 2}] (4) at (0.8,2.5) {4};
   \node[v,label={[r]below:3rd, deg 1}] (5) at (3.2,1.4) {5};
   \node[v,label={[r]below:2nd, deg 1}] (6) at (4.8,1.4) {6};
@@ -379,8 +379,8 @@ the basic algorithm is at the ceiling: it takes \emph{every} vertex of
 \code{frb53-24}, \code{frb59-26} and \code{frb100-40}. On relabeled copies its
 excess falls to 82--86\%. The randomized algorithm is better in every family
 and both numberings; on relabeled copies its excess is 66--72\% (for example
-440.3 vertices against 444.5 on \code{frb30-15}, $\OPT=420$), with a standard
-deviation below one vertex over 30 seeds.
+440.3 vertices against 444.5 on \code{frb30-15}, $\OPT=420$). In file order its
+30 runs per graph have a standard deviation below one vertex.
 
 The worst-case families show the full gap the analysis allows. On a perfect
 matching of 1,000 edges the basic algorithm takes exactly $2\,\OPT$ and the
@@ -442,7 +442,7 @@ takes $8n+16m$ bytes, about 119\,MB for \code{frb100-40}.
 \toprule
 Hypothesis & Measured \\
 \midrule
-H1: all four algorithms run in $\Theta(n+m)$; the log-log slope of time against $n+m$ is about 1. & \textbf{Confirmed.} Slopes 0.94--1.09 on FRB and 1.01--1.07 on $G(n,5n)$; the coloring passes cost up to 1.6 times more per element at $10^6$ vertices (cache misses). \\
+H1: all four algorithms run in $\Theta(n+m)$; the log-log slope of time against $n+m$ is about 1. & \textbf{Confirmed.} Slopes 0.94--1.09 on FRB and 1.01--1.07 on $G(n,5n)$; the coloring passes cost up to 1.7 times more per element at $10^6$ vertices (cache misses). \\
 H2: basic and randomized vertex cover differ in time by a constant factor only. & \textbf{Confirmed.} The same cost on FRB (84\,ns per element each); 0.49\,s against 0.54\,s at $n=10^6$. \\
 H3: smallest-last coloring costs a constant 2--3 times natural coloring. & \textbf{Constant, but larger:} 5.3--6.3 times on \code{clq} and 3.9--5.3 on \code{mis}, because the ordering pass costs about 4.5 greedy passes per element. \\
 H4: basic vertex cover $\le2\,\OPT$; on FRB \code{mis} within $K/(K-1)$. & \textbf{Confirmed.} Exactly $2\,\OPT$ on the perfect matching and $K_{100,100}$; 1.022--1.071 on FRB. \\
@@ -474,9 +474,9 @@ every run, while the randomized bound holds only in expectation (the star
 example). For coloring, smallest-last is worth its constant factor of about
 five to six in time: the order is still computed in linear time, it is immune to the
 numbering, it used 1.7--3.9 times fewer colors on the FRB graphs, and it is
-optimal on trees and crown graphs. Both remain far from optimal on these hard
-instances (45--73\% above $\chi$), which are designed so that no polynomial
-heuristic finds the planted solution.
+optimal on trees and crown graphs. Even smallest-last remains far from optimal
+on these hard instances (45--73\% above $\chi$), which are designed so that no
+polynomial heuristic finds the planted solution.
 
 \textbf{Implementation effects.} The first benchmark run measured the basic
 vertex cover three times slower than the randomized one at $10^6$ vertices.

@@ -108,7 +108,7 @@ def size_of(row: dict) -> int:
     return int(row["n"]) + int(row["m"])
 
 
-def runtime_figure(rows: list[dict], folder: Path, name: str, title: str,
+def runtime_figure(rows: list[dict], folder: Path, name: str,
                    by_form: bool) -> dict[str, float]:
     """Log-log running time against n + m, one panel per problem, with fitted slopes.
 
@@ -116,7 +116,6 @@ def runtime_figure(rows: list[dict], folder: Path, name: str, title: str,
         rows: Rows of ``frb_runtime.csv`` or ``scaling.csv``.
         folder: The ``figures`` folder.
         name: Output file name.
-        title: Figure title prefix (the graphs used).
         by_form: Draw ``clq`` filled and ``mis`` hollow (FRB only).
 
     Returns:
@@ -159,7 +158,6 @@ def runtime_figure(rows: list[dict], folder: Path, name: str, title: str,
                        markerfacecolor="white", label="hollow: complement (mis)"),
         ]
         fig.legend(handles=handles, loc="lower center", ncol=2, bbox_to_anchor=(0.5, -0.06))
-    fig.suptitle(title, x=0.01, ha="left", fontsize=9, color=INK_2)
     save(fig, folder, name)
     return slopes
 
@@ -197,10 +195,11 @@ def per_element_figure(rows: list[dict], folder: Path) -> None:
                     [float(r["median_s"]) * 1e9 / size_of(r) for r in mine],
                     marker=marker, color=color, label=label)
         ax.set_xscale("log")
-        ax.set_ylim(0, ax.get_ylim()[1] * 1.25)  # room for the legend
+        ax.set_ylim(bottom=0)
         ax.set_title(panel, loc="left")
         ax.set_xlabel("graph size n + m (random graphs, m = 5n)")
-        ax.legend(loc="upper left")
+        # Empty regions: below the vertex cover lines, between the coloring lines.
+        ax.legend(loc="lower right" if panel == "Vertex cover" else "center right")
     axes[0].set_ylabel("ns per (n + m)")
     save(fig, folder, "scaling_per_element")
 
@@ -233,14 +232,12 @@ def quality_figure(rows: list[dict], folder: Path, problem: str) -> None:
         series = [("basic", "basic_file", "basic_relabeled", BLUE, "o"),
                   ("randomized", "randomized_file_mean", "randomized_relabeled", ORANGE, "s")]
         ylabel, name = "cover size / minimum cover", "vc_quality"
-        title = "Vertex cover of the complement (mis form) against the exact optimum"
     else:
         optimum = "chi"
         series = [("natural order", "natural_file", "natural_relabeled", BLUE, "o"),
                   ("smallest-last", "sl_file", "sl_relabeled", ORANGE, "s")]
         ylabel, name = "colors / chromatic number", "coloring_quality"
-        title = "Coloring of the published graph (clq form) against the exact chromatic number"
-    fig, ax = plt.subplots(figsize=(7.0, 2.9))
+    fig, ax = plt.subplots(figsize=(7.0, 2.6))
     xs = range(len(families))
     for offset, (label, file_key, relabeled_key, color, marker) in zip((-0.16, 0.16), series):
         file_ratio, mean_ratio, low, high = [], [], [], []
@@ -273,7 +270,6 @@ def quality_figure(rows: list[dict], folder: Path, problem: str) -> None:
     ax.grid(axis="x", visible=False)  # categories need no vertical lines
     ax.set_xticks(list(xs), families)
     ax.set_ylabel(ylabel)
-    ax.set_title(title, loc="left")
     handles, labels = ax.get_legend_handles_labels()
     # Column 1: file order and the reference; column 2: relabeled copies.
     order = sorted(range(len(labels)), key=lambda i: ("relabeled" in labels[i], i))
@@ -407,13 +403,10 @@ def main(argv: Optional[list[str]] = None) -> int:
     worst = read_csv(args.results / "worst_cases.csv")
     slopes: dict[str, dict[str, float]] = {}
     if runtime:
-        slopes["FRB (both forms)"] = runtime_figure(
-            runtime, folder, "frb_runtime", "36 FRB graphs, published (clq) and complement "
-            "(mis)", by_form=True)
+        slopes["FRB (both forms)"] = runtime_figure(runtime, folder, "frb_runtime", by_form=True)
         sl_split_figure(runtime, folder)
     if scaling:
-        slopes["random G(n, 5n)"] = runtime_figure(
-            scaling, folder, "scaling", "Random graphs G(n, 5n)", by_form=False)
+        slopes["random G(n, 5n)"] = runtime_figure(scaling, folder, "scaling", by_form=False)
         per_element_figure(scaling, folder)
     if quality:
         quality_figure(quality, folder, "cover")
