@@ -72,7 +72,7 @@ size of a minimum vertex cover.
 
 \subsection{Basic vertex cover}
 
-The lecture algorithm repeatedly selects an arbitrary remaining edge $(u,v)$,
+The lecture algorithm~\cite{cormen2009,skiena2020,salavatipour2013} repeatedly selects an arbitrary remaining edge $(u,v)$,
 adds \emph{both} $u$ and $v$ to the cover $C$, and deletes every edge incident
 to $u$ or $v$. Our implementation scans the edge list once, in input order,
 and adds both endpoints of each edge that has neither endpoint in $C$ yet. The
@@ -93,7 +93,8 @@ $K_{k,k}$, the algorithm takes all $2k$ vertices while $\OPT=k$.
 Pitt's algorithm~\cite{pitt1985} scans the same edges in the same order, but
 adds \emph{one} endpoint of each uncovered edge, chosen by a fair coin. Keeping
 the edge order identical makes the coin the only difference between the two
-algorithms.
+algorithms. Both algorithms have weighted versions~\cite{pitt1985,baryehuda1981},
+which this report does not study.
 
 \textbf{Expected ratio 2.} Fix an optimal cover $C^*$. Each selected edge has
 an endpoint in $C^*$, so the coin picks a vertex of $C^*$ with probability at
@@ -124,7 +125,8 @@ $\log_2 n+1$ colors for a tree~\cite{gyarfas1988}.
 
 The csc09 paper~\cite{gebremedhin2009} describes four degree-based orderings:
 largest first~\cite{welsh1967}, incidence degree, dynamic largest first and
-smallest last. We chose \emph{smallest last} (SL)~\cite{matula1983}. It builds
+smallest last; the graph coloring page of Chiarandini~\cite{chiarandini} lists
+further heuristics such as DSATUR~\cite{brelaz1979}. We chose \emph{smallest last} (SL)~\cite{matula1983}. It builds
 the order from the end: the last vertex $v_n$ is a vertex of minimum degree in
 $G$; it is removed, $v_{n-1}$ is a vertex of minimum degree in what remains,
 and so on. The back degree of each vertex in the final order is its degree when
@@ -315,13 +317,13 @@ Table~\ref{tab:hypotheses} checks the predictions of the analysis.
  & & \multicolumn{4}{c|}{Time, \code{clq} form (ms)} & \multicolumn{2}{c|}{Cover$/\OPT$} & \multicolumn{2}{c}{Colors$/\chi$} \\
 Family & $m$ (\code{clq}) & basic & random. & natural & SL & basic & random. & natural & SL \\
 \midrule
-frb30-15 & 83,198 & 7.5 & 7.7 & 10.7 & 60.5 & 1.058 & 1.048 & 2.93 & 1.67 \
-frb35-17 & 148,791 & 13.0 & 12.7 & 18.0 & 104 & 1.052 & 1.041 & 3.25 & 1.72 \
-frb40-19 & 247,041 & 20.3 & 20.5 & 31.1 & 166 & 1.046 & 1.037 & 3.45 & 1.70 \
-frb45-21 & 387,403 & 31.5 & 31.9 & 43.8 & 260 & 1.042 & 1.034 & 3.73 & 1.71 \
-frb50-23 & 580,218 & 50.4 & 49.8 & 68.5 & 431 & 1.038 & 1.031 & 3.91 & 1.68 \
-frb53-24 & 714,121 & 59.5 & 57.5 & 89.0 & 476 & 1.037 & 1.030 & 4.02 & 1.54 \
-frb59-26 & 1,049,452 & 87.9 & 92.1 & 124 & 698 & 1.034 & 1.027 & 4.20 & 1.64 \
+frb30-15 & 83,198 & 7.5 & 7.7 & 10.7 & 60.5 & 1.058 & 1.048 & 2.93 & 1.67 \\
+frb35-17 & 148,791 & 13.0 & 12.7 & 18.0 & 104 & 1.052 & 1.041 & 3.25 & 1.72 \\
+frb40-19 & 247,041 & 20.3 & 20.5 & 31.1 & 166 & 1.046 & 1.037 & 3.45 & 1.70 \\
+frb45-21 & 387,403 & 31.5 & 31.9 & 43.8 & 260 & 1.042 & 1.034 & 3.73 & 1.71 \\
+frb50-23 & 580,218 & 50.4 & 49.8 & 68.5 & 431 & 1.038 & 1.031 & 3.91 & 1.68 \\
+frb53-24 & 714,121 & 59.5 & 57.5 & 89.0 & 476 & 1.037 & 1.030 & 4.02 & 1.54 \\
+frb59-26 & 1,049,452 & 87.9 & 92.1 & 124 & 698 & 1.034 & 1.027 & 4.20 & 1.64 \\
 frb100-40 & 7,425,226 & 463 & 464 & 902 & 5,420 & 1.022 & 1.018 & 5.60 & 1.45 \\
 \bottomrule
 \end{tabular}
@@ -337,17 +339,21 @@ smallest-last coloring 5.4\,s. The two vertex cover algorithms cost the
 same: the extra random bit of the randomized version is offset by the fewer
 vertices it adds.
 
-Smallest-last coloring costs 5.3--6.3 times as much as natural coloring on the \code{clq} graphs (3.9--5.3 times on the sparser \code{mis} graphs).
-Figure~\ref{fig:sl-split} shows why. The greedy pass along the SL order costs
-the same per edge as the natural greedy pass (about 125\,ns per
-element of $n+m$), but computing the order costs about 560\,ns per
-element: for each adjacency entry it reads the neighbor's position, degree and
-bucket start, and may swap two entries of the bucket array, while the greedy
-pass only reads one color.
+Smallest-last coloring costs 5.3--6.3 times as much as natural coloring on the
+\code{clq} graphs (3.9--5.3 times on the sparser \code{mis} graphs). Its greedy
+pass costs the same as the natural one, about 125\,ns per element of $n+m$, but
+computing the order costs about 560\,ns per element: for each adjacency entry it
+reads the neighbor's position, degree and bucket start, and may swap two
+entries, while the greedy pass reads one color.
 
 Figure~\ref{fig:scaling} shows the cost per element of $n+m$ on random graphs
-$G(n,5n)$ for $n=10^3,\ldots,10^6$, where the analysis predicts flat lines.
-The two vertex cover algorithms stay flat at 64--92\,ns per element from $n=10^3$ to $10^6$ (slopes 1.01): at $n=10^6$, with $5\times10^6$ edges, they take 0.49\,s and 0.54\,s. The coloring algorithms are flat up to about $10^5$ vertices and then rise gently, natural coloring from about 240 to 360\,ns and smallest-last from about 820 to 1{,}360\,ns per element (slopes 1.06 and 1.07); smallest-last coloring takes 8.2\,s at $n=10^6$. The rise sets in when the per-vertex arrays (colors, positions and degrees, several megabytes each) outgrow the CPU caches: each adjacency entry then reads a random vertex's entry from main memory. The vertex cover scan reads only a one-byte flag per endpoint, so its working set stays small. This is a memory-hierarchy effect outside the RAM model; the operation count is linear, as Table~\ref{tab:complexity} states.
+$G(n,5n)$, where the analysis predicts flat lines. The vertex cover algorithms
+stay at 64--92\,ns from $n=10^3$ to $10^6$ (slopes 1.01; 0.49\,s and 0.54\,s at
+$n=10^6$). The coloring algorithms are flat up to about $10^5$ vertices and then
+rise gently (slopes 1.06 and 1.07; smallest-last takes 8.2\,s at $n=10^6$),
+once their per-vertex arrays outgrow the CPU caches and each adjacency entry
+reads a random vertex's entry from main memory. This is a memory-hierarchy
+effect outside the RAM model; the operation count is linear.
 
 \begin{figure}[t]
   \centering
@@ -363,35 +369,25 @@ The two vertex cover algorithms stay flat at 64--92\,ns per element from $n=10^3
   \label{fig:scaling}
 \end{figure}
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{figures/sl_split.pdf}
-  \caption{Cost per element of $n+m$ on the \code{clq} graphs: natural greedy coloring against the two passes of smallest-last coloring.}
-  \label{fig:sl-split}
-\end{figure}
-
 \subsection{Vertex cover quality}
 
 Figure~\ref{fig:vc-quality} compares the cover sizes with the exact optimum on
-the \code{mis} graphs. All ratios lie below the ceiling $n/\OPT=K/(K-1)$,
-between 1.018 and 1.071, so a more telling measure is the \emph{excess}
-$|C|-\OPT$ as a share of the largest possible excess, $n-\OPT=N$. In the file's
-edge order the basic algorithm is at the ceiling: it takes \emph{every} vertex
-on \code{frb53-24}, \code{frb59-26} and \code{frb100-40} (excess 100\%), and
-99\% on \code{frb30-15}. On relabeled copies its excess falls to 82--86\%. The
-randomized algorithm is better in every family and in both numberings: on
-relabeled copies its excess is 66--72\%, for example 440.3 vertices against
-444.5 on \code{frb30-15} ($\OPT=420$) and 3,972 against 3,985 on
-\code{frb100-40} ($\OPT=3{,}900$). Over 30 seeds in file order its standard deviation is below one vertex.
+the \code{mis} graphs. All ratios lie between 1.018 and 1.071, below the
+ceiling $n/\OPT$, so a more telling measure is the \emph{excess} $|C|-\OPT$ as
+a share of the largest possible excess, $n-\OPT=N$. In the file's edge order
+the basic algorithm is at the ceiling: it takes \emph{every} vertex of
+\code{frb53-24}, \code{frb59-26} and \code{frb100-40}. On relabeled copies its
+excess falls to 82--86\%. The randomized algorithm is better in every family
+and both numberings; on relabeled copies its excess is 66--72\% (for example
+440.3 vertices against 444.5 on \code{frb30-15}, $\OPT=420$), with a standard
+deviation below one vertex over 30 seeds.
 
 The worst-case families show the full gap the analysis allows. On a perfect
-matching of 1,000 edges the basic algorithm takes 2,000 vertices, exactly
-$2\,\OPT$, and the randomized algorithm takes 1,000, the optimum, for every
-seed. On $K_{100,100}$ the basic algorithm takes all 200 vertices and the
-randomized one 185 on average (165--198). On a star with 1,000 leaves listed
-leaf first the basic algorithm takes 2 vertices; the randomized algorithm also
-takes 2 on average, but 8 in the worst of its 30 runs, which illustrates that
-its bound holds only in expectation.
+matching of 1,000 edges the basic algorithm takes exactly $2\,\OPT$ and the
+randomized one the optimum, for every seed; on $K_{100,100}$ they take 200 and
+185 on average (165--198), against $\OPT=100$. On a star with 1,000 leaves
+listed leaf first both take 2 on average, but the randomized algorithm took 8
+in its worst run: its bound holds only in expectation.
 
 \begin{figure}[t]
   \centering
@@ -409,18 +405,15 @@ Section~\ref{sec:setup}, the numbering hands it the planted coloring. On
 relabeled copies, where the order is truly arbitrary, it uses 2.9 times $\chi$
 on \code{frb30-15} (87.8 colors for $\chi=30$), rising to 5.6 times on
 \code{frb100-40} (560 for $\chi=100$). Smallest-last ignores the numbering: it
-uses 1.45--1.73 times $\chi$ in both numberings, for example 50.2 colors on
-\code{frb30-15} and 145.3 on \code{frb100-40}. That is 1.7 to 3.9 times fewer
-colors than the natural order on the same relabeled graphs, and the advantage
-generally grows with the size of the graph.
+uses 1.45--1.73 times $\chi$ in both numberings (50.2 colors on \code{frb30-15},
+145.3 on \code{frb100-40}), 1.7 to 3.9 times fewer than the natural order on
+the same relabeled graphs, an advantage that generally grows with the graph.
 
-The degeneracy bound $d+1$ guarantees little on these dense graphs: $d+1$ is
-338 on \code{frb30-15} and 3,572 on \code{frb100-40}, close to $\Delta+1$.
-Smallest-last uses far fewer colors than its guarantee. On sparse graphs the
-guarantee is decisive: on the binomial tree $B_{12}$ (4,096 vertices) the
-natural order uses 13 colors and smallest-last 2, and on the crown graph with
-200 vertices the natural order uses 100 colors and smallest-last 2, the
-optimum.
+The degeneracy bound guarantees little on these dense graphs ($d+1$ is 338 on
+\code{frb30-15}, close to $\Delta+1$), and smallest-last does far better than
+it. On sparse graphs the guarantee is decisive: on the binomial tree $B_{12}$
+(4,096 vertices) the natural order uses 13 colors and smallest-last 2, and on
+the 200-vertex crown graph 100 colors against 2, the optimum.
 
 \begin{figure}[t]
   \centering
@@ -431,7 +424,15 @@ optimum.
 
 \subsection{Memory}
 
-The extra memory of every algorithm is proportional to $n$ and independent of $m$, as the analysis predicts. On $G(n,5n)$ the peak extra allocation per vertex is the same at $n=10^4$, $10^5$ and $10^6$: 31\,bytes for the randomized vertex cover, 34 for the basic one, 52 for natural coloring and 48 for the smallest-last order (52 for the full smallest-last coloring). These constants are those of CPython: a list stores an 8-byte pointer per entry, and integers above 256 are separate 28-byte objects, while the flags and the smallest-last work arrays take 1 or 4 bytes per entry. On the dense FRB graphs, which have 185 to 684 edges per vertex, the cost per vertex is of the same size (22--65\,bytes), so it does not grow with $m$. The graph itself takes $8n+16m$ bytes in the CSR and edge-list arrays, about 119\,MB for \code{frb100-40}.
+The extra memory of every algorithm is proportional to $n$ and independent of
+$m$, as predicted. On $G(n,5n)$ the peak extra allocation per vertex is the
+same at $n=10^4$, $10^5$ and $10^6$: 31\,bytes for the randomized vertex cover,
+34 for the basic one, 52 for natural coloring and 48 for the smallest-last
+order. These are CPython constants: a list entry is an 8-byte pointer and
+integers above 256 are 28-byte objects, while flags and the smallest-last work
+arrays take 1 or 4 bytes per entry. On the FRB graphs, with 185 to 684 edges
+per vertex, the cost is similar (22--65\,bytes per vertex). The graph itself
+takes $8n+16m$ bytes, about 119\,MB for \code{frb100-40}.
 
 \begin{table}[t]
 \caption{The hypotheses of the analysis (repository file \code{docs/theory.md}) against the measurements.}
@@ -441,13 +442,13 @@ The extra memory of every algorithm is proportional to $n$ and independent of $m
 \toprule
 Hypothesis & Measured \\
 \midrule
-H1: all four algorithms run in $\Theta(n+m)$; the log-log slope of time against $n+m$ is about 1. & \textbf{Confirmed.} Slopes 0.94--1.09 on FRB and 1.01--1.07 on $G(n,5n)$; the coloring passes cost up to 1.6 times more per element at $10^6$ vertices (cache misses). \
-H2: basic and randomized vertex cover differ in time by a constant factor only. & \textbf{Confirmed.} The same cost on FRB (84\,ns per element each); 0.49\,s against 0.54\,s at $n=10^6$. \
-H3: smallest-last coloring costs a constant 2--3 times natural coloring. & \textbf{Constant, but larger:} 5.3--6.3 times on \code{clq} and 3.9--5.3 on \code{mis}, because the ordering pass costs about 4.5 greedy passes per element. \
-H4: basic vertex cover $\le2\,\OPT$; on FRB \code{mis} within $K/(K-1)$. & \textbf{Confirmed.} Exactly $2\,\OPT$ on the perfect matching and $K_{100,100}$; 1.022--1.071 on FRB. \
-H5: randomized vertex cover finds smaller covers on average. & \textbf{Confirmed} in all 8 families and both numberings; optimal on the perfect matching. \
-H6: smallest-last uses at most $d+1$ colors and fewer than the natural order. & \textbf{Confirmed} on relabeled copies (1.7--3.9 times fewer) and on the adversarial families; \textbf{not} in the file's numbering, where the natural order recovers $\chi$. \
-H7: neither coloring reaches $\chi$ on FRB \code{clq}. & \textbf{Confirmed} for smallest-last (1.45--1.73\,$\chi$); the natural order reaches $\chi$ only through the numbering. \
+H1: all four algorithms run in $\Theta(n+m)$; the log-log slope of time against $n+m$ is about 1. & \textbf{Confirmed.} Slopes 0.94--1.09 on FRB and 1.01--1.07 on $G(n,5n)$; the coloring passes cost up to 1.6 times more per element at $10^6$ vertices (cache misses). \\
+H2: basic and randomized vertex cover differ in time by a constant factor only. & \textbf{Confirmed.} The same cost on FRB (84\,ns per element each); 0.49\,s against 0.54\,s at $n=10^6$. \\
+H3: smallest-last coloring costs a constant 2--3 times natural coloring. & \textbf{Constant, but larger:} 5.3--6.3 times on \code{clq} and 3.9--5.3 on \code{mis}, because the ordering pass costs about 4.5 greedy passes per element. \\
+H4: basic vertex cover $\le2\,\OPT$; on FRB \code{mis} within $K/(K-1)$. & \textbf{Confirmed.} Exactly $2\,\OPT$ on the perfect matching and $K_{100,100}$; 1.022--1.071 on FRB. \\
+H5: randomized vertex cover finds smaller covers on average. & \textbf{Confirmed} in all 8 families and both numberings; optimal on the perfect matching. \\
+H6: smallest-last uses at most $d+1$ colors and fewer than the natural order. & \textbf{Confirmed} on relabeled copies (1.7--3.9 times fewer) and on the adversarial families; \textbf{not} in the file's numbering, where the natural order recovers $\chi$. \\
+H7: neither coloring reaches $\chi$ on FRB \code{clq}. & \textbf{Confirmed} for smallest-last (1.45--1.73\,$\chi$); the natural order reaches $\chi$ only through the numbering. \\
 H8: extra memory grows with $n$, not with $m$. & \textbf{Confirmed.} A constant 31--52 bytes per vertex from $n=10^4$ to $10^6$; similar on FRB graphs with up to 684 edges per vertex. \\
 \bottomrule
 \end{tabular}
@@ -459,14 +460,11 @@ H8: extra memory grows with $n$, not with $m$. & \textbf{Confirmed.} A constant 
 
 \textbf{Benchmark design matters as much as the algorithms.} The most
 striking result is not an algorithm's: in the FRB files' numbering the basic
-greedy coloring is optimal on all 36 graphs, and it is between 2.9 and 5.6
-times worse on the same graphs renumbered at random. A benchmark of greedy
-coloring on these files that kept the published numbering would conclude that
-the natural order is perfect. Generated instances often number their vertices
-in the order of their construction, so ``arbitrary'' orders should be
-randomized before such comparisons. The same holds, less dramatically, for
-vertex cover: the basic algorithm took every vertex of the larger graphs in the
-file's edge order.
+greedy coloring is optimal on all 36 graphs, and 2.9 to 5.6 times worse on the
+same graphs renumbered at random. A benchmark that kept the published numbering
+would conclude that the natural order is perfect. Generated instances often
+number their vertices in construction order, so ``arbitrary'' orders should be
+randomized before such comparisons.
 
 \textbf{Which algorithm to use.} For vertex cover the randomized algorithm is
 the better default: it costs the same, produced a smaller cover in every FRB
@@ -481,29 +479,22 @@ instances (45--73\% above $\chi$), which are designed so that no polynomial
 heuristic finds the planted solution.
 
 \textbf{Implementation effects.} The first benchmark run measured the basic
-vertex cover three times slower than the randomized one on $10^6$ vertices
-(1.68\,s against 0.53\,s).
-The cause was not the algorithm but a Python \code{set} used for the covered
-vertices, against a \code{bytearray} in the randomized version; with the same
-\code{bytearray} the two cost the same, which is what the final run measures.
-The storage of the smallest-last work arrays is a genuine trade-off. Python
-lists hold pointers to integer objects; flat \code{array} objects hold the
-integers inline but create an integer object on every read. On the small,
-dense FRB graphs, where everything fits in the CPU cache, lists are faster
-(423\,ms against 589\,ms on \code{frb59-26-1}); on $G(n,5n)$ with $10^6$
-vertices, where following the pointers misses the cache, flat arrays are
-faster (5.8\,s against 9.0\,s), and only they keep the cost per element flat.
-We kept the flat arrays, so the ratio between smallest-last and natural
-coloring on FRB is larger than it would be with lists. Constant
-factors in CPython remain large: about 125\,ns per element for a
-greedy pass that would take a few nanoseconds in a compiled language.
+vertex cover three times slower than the randomized one at $10^6$ vertices.
+The cause was a Python \code{set} for the covered vertices against a
+\code{bytearray} in the randomized version; with the same \code{bytearray}
+both cost the same, as the final run shows. The storage of the smallest-last
+work arrays is a genuine trade-off: lists hold pointers to integer objects,
+while flat \code{array}s hold integers inline but create an integer object on
+every read. On the dense FRB graphs, which fit in the CPU cache, lists are
+faster (423 against 589\,ms on \code{frb59-26-1}); at $10^6$ vertices flat
+arrays are (5.8 against 9.0\,s), and only they keep the cost per element flat.
+We kept the flat arrays, which inflates the smallest-last ratio on FRB.
 
-\textbf{Threats to validity.}
-\begin{itemize}
-  \item All times come from one machine and CPython; a compiled implementation could change the ratio between the smallest-last ordering and the greedy pass.
-  \item The FRB graphs are dense (at least 82\% of all pairs in \code{clq} form), so vertex cover is measured within a narrow band below $K/(K-1)$; sparse graphs with known optima would separate the two vertex cover algorithms more.
-  \item Graphs with more than $2\times10^6$ edges were timed three times instead of five.
-\end{itemize}
+\textbf{Threats to validity.} All times come from one machine and CPython, and
+a compiled implementation could change the ratio between the ordering and the
+greedy pass. The FRB graphs are dense, so vertex cover is compared within the
+narrow band below $K/(K-1)$. Graphs with more than $2\times10^6$ edges were
+timed three times instead of five.
 
 %% ---------------------------------------------------------------------------
 \section{Conclusion}
@@ -525,7 +516,7 @@ heuristics on these benchmarks need randomly relabeled copies.
 This work was produced with the assistance of Claude Code (Anthropic, Claude
 Opus 5.5), as allowed by the course policy with disclosure.
 \begin{itemize}
-  \item \textbf{The author} wrote the bodies of \code{basic\_vertex\_cover} and \code{greedy\_coloring} and the hand-worked unit tests in \code{tests/test\_author\_cases.py} (each marked ``Written by Ahmed Elgazwy'' in the code), and the paragraph explaining the choice of the smallest-last ordering in Section~\ref{sec:sl}. The author also approved the plan, including the smallest-last ordering and the use of both dataset forms, directed the work in phases and reviewed it (recorded in \code{docs/review\_log.md}).
+  \item \textbf{The author} wrote the bodies of \code{basic\_vertex\_cover} and \code{greedy\_coloring} and the hand-worked unit tests in \code{tests/test\_author\_cases.py} (each marked ``Written by Ahmed Elgazwy'' in the code), and the paragraph explaining the choice of the smallest-last ordering in Section~\ref{sec:sl}. The author also approved the plan, including the smallest-last ordering and the use of both dataset forms, directed the work in phases and reviewed it (recorded in \code{docs/review\_log.md}). One edit inside the author's code was made by the assistant with the author's approval: the \code{set} of covered vertices in \code{basic\_vertex\_cover} became a \code{bytearray} (same logic; marked in the code).
   \item \textbf{The assistant} wrote the remaining code (graph structure, file readers, randomized vertex cover, smallest-last ordering, generators, demo, benchmark and plotting scripts), the other unit tests, and drafted this report.
 \end{itemize}
 

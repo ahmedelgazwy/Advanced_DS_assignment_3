@@ -32,5 +32,5 @@ uses:
 
 ```bash
 python -m scripts.plot_results
-cp results/figures/{frb_runtime,scaling_per_element,vc_quality,coloring_quality,sl_split}.pdf report/figures/
+cp results/figures/{frb_runtime,scaling_per_element,vc_quality,coloring_quality}.pdf report/figures/
 ```
