@@ -131,7 +131,8 @@ def part_where_they_differ(quick: bool, seeds: int) -> None:
     k = 20 if quick else 100
     cover_cases = [
         (f"perfect matching, {k} edges", perfect_matching_graph(k), k),
-        (f"complete bipartite K{k // 5},{k // 5}", complete_bipartite_graph(k // 5, k // 5), k // 5),
+        (f"complete bipartite K{k // 5},{k // 5}",
+         complete_bipartite_graph(k // 5, k // 5), k // 5),
         (f"star with {k} leaves", star_graph(k), 1),
         ("complete graph K12", complete_graph(12), 11),
     ]
@@ -195,7 +196,15 @@ def part_real_graph(instance_name: str, seeds: int, quick: bool) -> None:
           "copies with random vertex numbers and edge order (range in brackets).")
 
     def summary(values: list[int], scale: int) -> list[str]:
-        """Mean (min-max) of sizes, and the mean divided by the optimum."""
+        """Format sizes as "mean (min-max)" and the mean divided by the optimum.
+
+        Args:
+            values: Cover sizes or color counts.
+            scale: The optimum to divide by.
+
+        Returns:
+            ``[mean text, ratio text]``.
+        """
         mean = statistics.fmean(values)
         text = f"{mean:.1f} ({min(values)}-{max(values)})" if len(values) > 1 else str(values[0])
         return [text, f"{mean / scale:.3f}"]

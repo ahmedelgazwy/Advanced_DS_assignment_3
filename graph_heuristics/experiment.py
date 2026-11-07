@@ -142,6 +142,7 @@ def format_table(headers: Sequence[str], rows: Sequence[Sequence[object]]) -> st
     widths = [max(len(row[i]) for row in cells) for i in range(len(headers))]
 
     def line(row: list[str]) -> str:
+        """Join one row's cells, padded to the column widths."""
         parts = []
         for i, cell in enumerate(row):
             numeric = cell.replace(".", "", 1).replace(",", "").replace("-", "", 1).isdigit()

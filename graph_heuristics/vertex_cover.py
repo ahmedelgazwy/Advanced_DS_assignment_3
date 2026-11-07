@@ -13,7 +13,7 @@ edges incident to them":
   E|C| <= 2 OPT.
 
 Both scan the edge list once, in input order. An edge has been "deleted" by
-the lecture loop exactly when one given the assignment 2 pdf create a detailed plan for me to review for solving this assignment. create a git repo that you will use for commiting each part and make the plan comprehensiveof its endpoints is already in C, so the
+the lecture loop exactly when one of its endpoints is already in C, so the
 next uncovered edge of the scan is the next edge the loop would select. Both
 run in O(n + m) time with O(n) extra space: a bytearray of membership flags.
 

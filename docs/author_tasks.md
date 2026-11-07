@@ -1,6 +1,6 @@
 # Author tasks (decision D2)
 
-These are the parts of the assignment the author writes himself, so that the
+These are the parts of the assignment the author writes, so that the
 report and the README can show which code is the author's (course GenAI
 policy). Everything around them is already in place, including the unit tests
 that check them.
