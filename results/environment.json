@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-06T18:04:20",
+  "python": "3.10.2",
+  "implementation": "CPython",
+  "os": "Windows-10-10.0.26200-SP0",
+  "cpu": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+  "logical_cpus": 16,
+  "git_commit": "5070b02",
+  "options": {
+    "quick": "False",
+    "results": "C:\\Users\\ahmed\\OneDrive - Ontario Tech University\\Desktop\\ADSA\\assignments\\assignment3\\results",
+    "data_dir": "C:\\Users\\ahmed\\OneDrive - Ontario Tech University\\Desktop\\ADSA\\assignments\\assignment3\\data",
+    "families": "None",
+    "repeats": "5",
+    "seeds": "30",
+    "copies": "5",
+    "max_n": "1000000",
+    "skip": "[]"
+  }
+}

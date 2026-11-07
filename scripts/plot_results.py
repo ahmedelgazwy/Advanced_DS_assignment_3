@@ -270,6 +270,7 @@ def quality_figure(rows: list[dict], folder: Path, problem: str) -> None:
         ax.axhline(1.0, color=MUTED, linewidth=1.0, linestyle="--", label="optimum (chi)")
         ax.set_ylim(bottom=0)
     ax.set_xlim(-0.5, len(families) - 0.5)
+    ax.grid(axis="x", visible=False)  # categories need no vertical lines
     ax.set_xticks(list(xs), families)
     ax.set_ylabel(ylabel)
     ax.set_title(title, loc="left")
@@ -304,9 +305,10 @@ def sl_split_figure(rows: list[dict], folder: Path) -> None:
         ax.bar([x + (i - 1) * (width + 0.02) for x in range(len(families))], values,
                width=width, color=color, label=label)
     ax.set_xticks(range(len(families)), families)
+    ax.grid(axis="x", visible=False)
     ax.set_ylabel("ns per (n + m)")
     ax.set_title("Where smallest-last coloring spends its time (clq form)", loc="left")
-    ax.legend(loc="upper left", ncol=3)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=3)
     save(fig, folder, "sl_split")
 
 
@@ -350,6 +352,7 @@ def summary_tables(results: Path, runtime: list[dict], scaling: list[dict],
             mine = [r for r in quality if r["family"] == family]
 
             def mean(key: str) -> float:
+                """Mean of one column over the family's instances."""
                 return statistics.fmean(float(r[key]) for r in mine)
             table.append([
                 family, f"{mean('opt_cover'):.0f}", f"{mean('basic_file'):.1f}",

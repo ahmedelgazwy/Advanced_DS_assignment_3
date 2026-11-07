@@ -118,9 +118,12 @@ def smallest_last_order(graph: Graph) -> tuple[list[int], int]:
         and the degeneracy d, the largest degree a vertex has when removed.
         Every vertex has at most d neighbors before it in ``order``.
 
-    The four work arrays are flat ``array('i')`` objects rather than lists:
-    they hold their integers inline, so on large graphs each access touches
-    one cache line instead of following a pointer (38% faster at n = 10^6).
+    The four work arrays are flat ``array('i')`` objects rather than lists.
+    They hold their integers inline, so on large graphs an access does not
+    follow a pointer to a scattered integer object: 5.8 s instead of 9.0 s on
+    G(n, 5n) with n = 10^6. On small dense graphs that fit in the CPU cache,
+    lists are about 30% faster, because reading an array creates an integer
+    object; the flat arrays were kept for their linear behaviour at scale.
 
     Complexity: O(n + m) time; O(n) extra space (deg, pos and vert of n
     entries each, start of Delta + 2 <= n + 1 entries: about 16n bytes).

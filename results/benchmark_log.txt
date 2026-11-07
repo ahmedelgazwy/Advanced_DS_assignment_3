@@ -1,0 +1,126 @@
+[    0.1 s] 11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz, Python 3.10.2, Windows-10-10.0.26200-SP0, commit 5070b02
+[    1.2 s] E1 frb30-15-1  clq  m=   83,198  basic_vc=8.1ms  randomized_vc=8.2ms  natural_coloring=10.0ms  sl_coloring=67.5ms
+[    1.5 s] E1 frb30-15-1  mis  m=   17,827  basic_vc=1.1ms  randomized_vc=1.1ms  natural_coloring=2.5ms  sl_coloring=13.2ms
+[    2.7 s] E2 frb30-15-1  VC/OPT basic=1.0714 rand=1.0687  colors natural=30 (90.0) sl=41 (46.0) chi=30
+[    3.9 s] E1 frb30-15-2  clq  m=   83,151  basic_vc=6.8ms  randomized_vc=6.5ms  natural_coloring=13.8ms  sl_coloring=62.0ms
+[    4.1 s] E1 frb30-15-2  mis  m=   17,874  basic_vc=1.0ms  randomized_vc=1.1ms  natural_coloring=2.7ms  sl_coloring=14.3ms
+[    5.4 s] E2 frb30-15-2  VC/OPT basic=1.0667 rand=1.0637  colors natural=30 (88.0) sl=60 (49.2) chi=30
+[    6.4 s] E1 frb30-15-3  clq  m=   83,216  basic_vc=5.9ms  randomized_vc=6.4ms  natural_coloring=10.1ms  sl_coloring=56.3ms
+[    6.7 s] E1 frb30-15-3  mis  m=   17,809  basic_vc=1.0ms  randomized_vc=1.1ms  natural_coloring=2.5ms  sl_coloring=12.3ms
+[    7.9 s] E2 frb30-15-3  VC/OPT basic=1.0714 rand=1.0689  colors natural=30 (85.2) sl=52 (50.0) chi=30
+[    9.0 s] E1 frb30-15-4  clq  m=   83,194  basic_vc=7.1ms  randomized_vc=7.0ms  natural_coloring=9.9ms  sl_coloring=56.1ms
+[    9.2 s] E1 frb30-15-4  mis  m=   17,831  basic_vc=1.0ms  randomized_vc=1.0ms  natural_coloring=2.4ms  sl_coloring=12.8ms
+[   10.4 s] E2 frb30-15-4  VC/OPT basic=1.0714 rand=1.0657  colors natural=30 (85.8) sl=53 (46.8) chi=30
+[   11.5 s] E1 frb30-15-5  clq  m=   83,231  basic_vc=9.4ms  randomized_vc=10.2ms  natural_coloring=9.7ms  sl_coloring=60.5ms
+[   11.7 s] E1 frb30-15-5  mis  m=   17,794  basic_vc=1.1ms  randomized_vc=1.1ms  natural_coloring=2.6ms  sl_coloring=12.6ms
+[   12.8 s] E2 frb30-15-5  VC/OPT basic=1.0714 rand=1.0657  colors natural=30 (90.2) sl=51 (59.0) chi=30
+[   14.8 s] E1 frb35-17-1  clq  m=  148,859  basic_vc=13.0ms  randomized_vc=12.7ms  natural_coloring=19.3ms  sl_coloring=100.5ms
+[   15.2 s] E1 frb35-17-1  mis  m=   27,856  basic_vc=2.2ms  randomized_vc=3.3ms  natural_coloring=5.4ms  sl_coloring=21.5ms
+[   17.4 s] E2 frb35-17-1  VC/OPT basic=1.0571 rand=1.0566  colors natural=35 (112.6) sl=61 (60.8) chi=35
+[   19.4 s] E1 frb35-17-2  clq  m=  148,868  basic_vc=12.0ms  randomized_vc=12.0ms  natural_coloring=18.3ms  sl_coloring=128.4ms
+[   19.7 s] E1 frb35-17-2  mis  m=   27,847  basic_vc=1.9ms  randomized_vc=3.7ms  natural_coloring=6.3ms  sl_coloring=19.5ms
+[   22.1 s] E2 frb35-17-2  VC/OPT basic=1.0571 rand=1.0554  colors natural=35 (111.8) sl=62 (58.6) chi=35
+[   24.0 s] E1 frb35-17-3  clq  m=  148,784  basic_vc=13.0ms  randomized_vc=12.5ms  natural_coloring=17.7ms  sl_coloring=106.6ms
+[   24.3 s] E1 frb35-17-3  mis  m=   27,931  basic_vc=1.6ms  randomized_vc=2.8ms  natural_coloring=5.2ms  sl_coloring=16.5ms
+[   26.6 s] E2 frb35-17-3  VC/OPT basic=1.0571 rand=1.0553  colors natural=35 (114.8) sl=54 (55.8) chi=35
+[   28.5 s] E1 frb35-17-4  clq  m=  148,873  basic_vc=14.9ms  randomized_vc=11.0ms  natural_coloring=17.9ms  sl_coloring=91.0ms
+[   28.8 s] E1 frb35-17-4  mis  m=   27,842  basic_vc=1.8ms  randomized_vc=1.9ms  natural_coloring=4.2ms  sl_coloring=18.9ms
+[   31.0 s] E2 frb35-17-4  VC/OPT basic=1.0571 rand=1.0571  colors natural=35 (113.8) sl=48 (60.4) chi=35
+[   32.8 s] E1 frb35-17-5  clq  m=  148,572  basic_vc=12.0ms  randomized_vc=15.4ms  natural_coloring=16.7ms  sl_coloring=94.4ms
+[   33.1 s] E1 frb35-17-5  mis  m=   28,143  basic_vc=1.6ms  randomized_vc=1.6ms  natural_coloring=4.0ms  sl_coloring=20.3ms
+[   35.3 s] E2 frb35-17-5  VC/OPT basic=1.0607 rand=1.0595  colors natural=35 (115.6) sl=71 (66.2) chi=35
+[   38.2 s] E1 frb40-19-1  clq  m=  247,106  basic_vc=19.7ms  randomized_vc=20.1ms  natural_coloring=29.1ms  sl_coloring=159.4ms
+[   38.7 s] E1 frb40-19-1  mis  m=   41,314  basic_vc=2.6ms  randomized_vc=2.6ms  natural_coloring=6.0ms  sl_coloring=28.5ms
+[   42.4 s] E2 frb40-19-1  VC/OPT basic=1.0556 rand=1.0527  colors natural=40 (138.6) sl=53 (57.4) chi=40
+[   45.3 s] E1 frb40-19-2  clq  m=  247,157  basic_vc=22.6ms  randomized_vc=21.7ms  natural_coloring=32.2ms  sl_coloring=155.8ms
+[   45.7 s] E1 frb40-19-2  mis  m=   41,263  basic_vc=2.4ms  randomized_vc=2.5ms  natural_coloring=6.5ms  sl_coloring=27.4ms
+[   49.5 s] E2 frb40-19-2  VC/OPT basic=1.0528 rand=1.0513  colors natural=40 (136.4) sl=58 (64.0) chi=40
+[   52.5 s] E1 frb40-19-3  clq  m=  247,325  basic_vc=18.2ms  randomized_vc=19.7ms  natural_coloring=29.4ms  sl_coloring=183.5ms
+[   52.9 s] E1 frb40-19-3  mis  m=   41,095  basic_vc=2.3ms  randomized_vc=2.1ms  natural_coloring=5.0ms  sl_coloring=22.5ms
+[   56.6 s] E2 frb40-19-3  VC/OPT basic=1.0528 rand=1.0526  colors natural=40 (136.8) sl=72 (82.8) chi=40
+[   59.6 s] E1 frb40-19-4  clq  m=  246,815  basic_vc=20.2ms  randomized_vc=20.1ms  natural_coloring=32.0ms  sl_coloring=167.8ms
+[   60.0 s] E1 frb40-19-4  mis  m=   41,605  basic_vc=2.3ms  randomized_vc=2.3ms  natural_coloring=5.5ms  sl_coloring=27.6ms
+[   63.6 s] E2 frb40-19-4  VC/OPT basic=1.0528 rand=1.0510  colors natural=40 (140.6) sl=70 (68.4) chi=40
+[   66.4 s] E1 frb40-19-5  clq  m=  246,801  basic_vc=20.9ms  randomized_vc=20.9ms  natural_coloring=32.9ms  sl_coloring=164.5ms
+[   66.8 s] E1 frb40-19-5  mis  m=   41,619  basic_vc=2.5ms  randomized_vc=2.5ms  natural_coloring=5.8ms  sl_coloring=25.3ms
+[   70.3 s] E2 frb40-19-5  VC/OPT basic=1.0528 rand=1.0531  colors natural=40 (136.8) sl=63 (67.4) chi=40
+[   74.9 s] E1 frb45-21-1  clq  m=  386,854  basic_vc=27.3ms  randomized_vc=28.8ms  natural_coloring=42.8ms  sl_coloring=274.0ms
+[   75.5 s] E1 frb45-21-1  mis  m=   59,186  basic_vc=3.8ms  randomized_vc=3.7ms  natural_coloring=8.6ms  sl_coloring=42.5ms
+[   80.9 s] E2 frb45-21-1  VC/OPT basic=1.0489 rand=1.0486  colors natural=45 (170.4) sl=82 (88.2) chi=45
+[   85.2 s] E1 frb45-21-2  clq  m=  387,416  basic_vc=33.1ms  randomized_vc=29.6ms  natural_coloring=44.2ms  sl_coloring=236.1ms
+[   85.7 s] E1 frb45-21-2  mis  m=   58,624  basic_vc=3.0ms  randomized_vc=3.3ms  natural_coloring=8.6ms  sl_coloring=39.4ms
+[   91.1 s] E2 frb45-21-2  VC/OPT basic=1.0489 rand=1.0463  colors natural=45 (168.8) sl=69 (77.2) chi=45
+[   95.8 s] E1 frb45-21-3  clq  m=  387,795  basic_vc=34.4ms  randomized_vc=37.2ms  natural_coloring=46.9ms  sl_coloring=253.0ms
+[   96.3 s] E1 frb45-21-3  mis  m=   58,245  basic_vc=3.4ms  randomized_vc=3.5ms  natural_coloring=8.4ms  sl_coloring=39.1ms
+[  102.1 s] E2 frb45-21-3  VC/OPT basic=1.0467 rand=1.0452  colors natural=45 (166.0) sl=70 (71.6) chi=45
+[  106.6 s] E1 frb45-21-4  clq  m=  387,491  basic_vc=30.9ms  randomized_vc=31.1ms  natural_coloring=43.8ms  sl_coloring=274.0ms
+[  107.1 s] E1 frb45-21-4  mis  m=   58,549  basic_vc=3.0ms  randomized_vc=3.0ms  natural_coloring=6.9ms  sl_coloring=34.9ms
+[  112.4 s] E2 frb45-21-4  VC/OPT basic=1.0467 rand=1.0453  colors natural=45 (164.2) sl=72 (71.6) chi=45
+[  116.9 s] E1 frb45-21-5  clq  m=  387,461  basic_vc=32.0ms  randomized_vc=32.7ms  natural_coloring=41.2ms  sl_coloring=261.7ms
+[  117.5 s] E1 frb45-21-5  mis  m=   58,579  basic_vc=3.6ms  randomized_vc=3.3ms  natural_coloring=6.9ms  sl_coloring=37.1ms
+[  123.5 s] E2 frb45-21-5  VC/OPT basic=1.0489 rand=1.0474  colors natural=45 (170.8) sl=78 (77.2) chi=45
+[  130.9 s] E1 frb50-23-1  clq  m=  580,603  basic_vc=50.2ms  randomized_vc=48.1ms  natural_coloring=74.9ms  sl_coloring=479.5ms
+[  131.8 s] E1 frb50-23-1  mis  m=   80,072  basic_vc=5.4ms  randomized_vc=5.4ms  natural_coloring=12.9ms  sl_coloring=61.3ms
+[  140.7 s] E2 frb50-23-1  VC/OPT basic=1.0436 rand=1.0417  colors natural=50 (196.4) sl=77 (81.0) chi=50
+[  147.6 s] E1 frb50-23-2  clq  m=  579,824  basic_vc=48.5ms  randomized_vc=45.3ms  natural_coloring=58.5ms  sl_coloring=417.5ms
+[  148.4 s] E1 frb50-23-2  mis  m=   80,851  basic_vc=5.5ms  randomized_vc=5.0ms  natural_coloring=10.9ms  sl_coloring=53.5ms
+[  157.3 s] E2 frb50-23-2  VC/OPT basic=1.0455 rand=1.0427  colors natural=50 (198.2) sl=75 (79.6) chi=50
+[  164.4 s] E1 frb50-23-3  clq  m=  579,607  basic_vc=53.3ms  randomized_vc=55.8ms  natural_coloring=74.4ms  sl_coloring=415.7ms
+[  165.1 s] E1 frb50-23-3  mis  m=   81,068  basic_vc=4.8ms  randomized_vc=4.8ms  natural_coloring=10.7ms  sl_coloring=51.6ms
+[  173.8 s] E2 frb50-23-3  VC/OPT basic=1.0436 rand=1.0418  colors natural=50 (199.2) sl=79 (92.0) chi=50
+[  180.5 s] E1 frb50-23-4  clq  m=  580,417  basic_vc=48.9ms  randomized_vc=48.7ms  natural_coloring=69.4ms  sl_coloring=400.2ms
+[  181.4 s] E1 frb50-23-4  mis  m=   80,258  basic_vc=5.6ms  randomized_vc=6.2ms  natural_coloring=12.6ms  sl_coloring=63.8ms
+[  190.5 s] E2 frb50-23-4  VC/OPT basic=1.0436 rand=1.0427  colors natural=50 (194.6) sl=78 (84.8) chi=50
+[  197.7 s] E1 frb50-23-5  clq  m=  580,640  basic_vc=51.2ms  randomized_vc=50.8ms  natural_coloring=65.0ms  sl_coloring=440.2ms
+[  198.5 s] E1 frb50-23-5  mis  m=   80,035  basic_vc=4.9ms  randomized_vc=5.1ms  natural_coloring=11.0ms  sl_coloring=57.9ms
+[  206.6 s] E2 frb50-23-5  VC/OPT basic=1.0436 rand=1.0425  colors natural=50 (189.4) sl=103 (81.4) chi=50
+[  214.7 s] E1 frb53-24-1  clq  m=  714,129  basic_vc=57.0ms  randomized_vc=56.4ms  natural_coloring=94.4ms  sl_coloring=486.1ms
+[  215.5 s] E1 frb53-24-1  mis  m=   94,227  basic_vc=5.6ms  randomized_vc=5.8ms  natural_coloring=14.0ms  sl_coloring=54.7ms
+[  226.0 s] E2 frb53-24-1  VC/OPT basic=1.0435 rand=1.0409  colors natural=53 (215.8) sl=81 (93.4) chi=53
+[  234.4 s] E1 frb53-24-2  clq  m=  714,067  basic_vc=63.3ms  randomized_vc=60.1ms  natural_coloring=85.3ms  sl_coloring=479.9ms
+[  235.4 s] E1 frb53-24-2  mis  m=   94,289  basic_vc=5.7ms  randomized_vc=5.9ms  natural_coloring=14.3ms  sl_coloring=71.1ms
+[  246.3 s] E2 frb53-24-2  VC/OPT basic=1.0435 rand=1.0410  colors natural=53 (218.8) sl=76 (73.6) chi=53
+[  254.4 s] E1 frb53-24-3  clq  m=  714,229  basic_vc=57.5ms  randomized_vc=57.9ms  natural_coloring=84.7ms  sl_coloring=453.9ms
+[  255.2 s] E1 frb53-24-3  mis  m=   94,127  basic_vc=6.4ms  randomized_vc=6.3ms  natural_coloring=11.4ms  sl_coloring=58.9ms
+[  265.6 s] E2 frb53-24-3  VC/OPT basic=1.0435 rand=1.0418  colors natural=53 (213.4) sl=77 (83.4) chi=53
+[  274.0 s] E1 frb53-24-4  clq  m=  714,048  basic_vc=63.0ms  randomized_vc=58.5ms  natural_coloring=101.9ms  sl_coloring=491.8ms
+[  274.8 s] E1 frb53-24-4  mis  m=   94,308  basic_vc=4.7ms  randomized_vc=4.8ms  natural_coloring=10.9ms  sl_coloring=64.8ms
+[  285.1 s] E2 frb53-24-4  VC/OPT basic=1.0435 rand=1.0408  colors natural=53 (206.4) sl=83 (80.4) chi=53
+[  293.1 s] E1 frb53-24-5  clq  m=  714,130  basic_vc=56.7ms  randomized_vc=54.5ms  natural_coloring=78.8ms  sl_coloring=468.7ms
+[  293.9 s] E1 frb53-24-5  mis  m=   94,226  basic_vc=5.0ms  randomized_vc=5.7ms  natural_coloring=12.3ms  sl_coloring=52.4ms
+[  304.8 s] E2 frb53-24-5  VC/OPT basic=1.0435 rand=1.0410  colors natural=53 (209.6) sl=77 (76.4) chi=53
+[  316.9 s] E1 frb59-26-1  clq  m=1,049,256  basic_vc=82.4ms  randomized_vc=97.7ms  natural_coloring=126.2ms  sl_coloring=670.2ms
+[  318.0 s] E1 frb59-26-1  mis  m=  126,555  basic_vc=7.4ms  randomized_vc=7.6ms  natural_coloring=17.4ms  sl_coloring=85.3ms
+[  333.8 s] E2 frb59-26-1  VC/OPT basic=1.0400 rand=1.0386  colors natural=59 (245.2) sl=91 (90.0) chi=59
+[  345.8 s] E1 frb59-26-2  clq  m=1,049,648  basic_vc=87.3ms  randomized_vc=88.1ms  natural_coloring=128.0ms  sl_coloring=712.3ms
+[  346.9 s] E1 frb59-26-2  mis  m=  126,163  basic_vc=9.0ms  randomized_vc=8.1ms  natural_coloring=18.1ms  sl_coloring=81.2ms
+[  362.5 s] E2 frb59-26-2  VC/OPT basic=1.0400 rand=1.0372  colors natural=59 (251.8) sl=91 (87.4) chi=59
+[  374.7 s] E1 frb59-26-3  clq  m=1,049,729  basic_vc=87.6ms  randomized_vc=91.1ms  natural_coloring=126.7ms  sl_coloring=719.7ms
+[  375.9 s] E1 frb59-26-3  mis  m=  126,082  basic_vc=8.1ms  randomized_vc=8.0ms  natural_coloring=18.1ms  sl_coloring=77.1ms
+[  391.2 s] E2 frb59-26-3  VC/OPT basic=1.0400 rand=1.0380  colors natural=59 (247.6) sl=88 (90.0) chi=59
+[  403.0 s] E1 frb59-26-4  clq  m=1,048,800  basic_vc=88.8ms  randomized_vc=90.0ms  natural_coloring=118.8ms  sl_coloring=710.5ms
+[  404.1 s] E1 frb59-26-4  mis  m=  127,011  basic_vc=7.1ms  randomized_vc=6.9ms  natural_coloring=16.1ms  sl_coloring=85.8ms
+[  419.6 s] E2 frb59-26-4  VC/OPT basic=1.0400 rand=1.0380  colors natural=59 (240.6) sl=95 (100.0) chi=59
+[  431.8 s] E1 frb59-26-5  clq  m=1,049,829  basic_vc=93.2ms  randomized_vc=93.3ms  natural_coloring=120.7ms  sl_coloring=674.9ms
+[  432.9 s] E1 frb59-26-5  mis  m=  125,982  basic_vc=7.1ms  randomized_vc=7.0ms  natural_coloring=15.6ms  sl_coloring=77.1ms
+[  449.7 s] E2 frb59-26-5  VC/OPT basic=1.0400 rand=1.0386  colors natural=59 (252.4) sl=133 (115.6) chi=59
+[  510.4 s] E1 frb100-40   clq  m=7,425,226  basic_vc=462.8ms  randomized_vc=464.3ms  natural_coloring=902.0ms  sl_coloring=5420.3ms
+[  515.6 s] E1 frb100-40   mis  m=  572,774  basic_vc=38.5ms  randomized_vc=36.5ms  natural_coloring=77.3ms  sl_coloring=405.9ms
+[  592.5 s] E2 frb100-40   VC/OPT basic=1.0256 rand=1.0244  colors natural=100 (560.0) sl=151 (145.3) chi=100
+[  592.6 s] E3 n=    1,000 m=     5,000  basic_vc=0.5ms  randomized_vc=0.5ms  natural_coloring=1.4ms  sl_coloring=4.9ms
+[  592.8 s] E3 n=    2,000 m=    10,000  basic_vc=0.9ms  randomized_vc=1.0ms  natural_coloring=3.0ms  sl_coloring=9.9ms
+[  593.3 s] E3 n=    5,000 m=    25,000  basic_vc=2.1ms  randomized_vc=2.3ms  natural_coloring=7.0ms  sl_coloring=24.9ms
+[  594.2 s] E3 n=   10,000 m=    50,000  basic_vc=3.8ms  randomized_vc=4.4ms  natural_coloring=14.0ms  sl_coloring=46.9ms
+[  596.2 s] E3 n=   20,000 m=   100,000  basic_vc=8.6ms  randomized_vc=9.9ms  natural_coloring=36.8ms  sl_coloring=116.8ms
+[  601.0 s] E3 n=   50,000 m=   250,000  basic_vc=22.8ms  randomized_vc=26.0ms  natural_coloring=72.5ms  sl_coloring=282.9ms
+[  610.6 s] E3 n=  100,000 m=   500,000  basic_vc=49.3ms  randomized_vc=53.6ms  natural_coloring=180.9ms  sl_coloring=594.3ms
+[  631.6 s] E3 n=  200,000 m= 1,000,000  basic_vc=89.4ms  randomized_vc=109.9ms  natural_coloring=383.1ms  sl_coloring=1265.3ms
+[  673.5 s] E3 n=  500,000 m= 2,500,000  basic_vc=208.3ms  randomized_vc=248.7ms  natural_coloring=927.0ms  sl_coloring=3787.8ms
+[  764.3 s] E3 n=1,000,000 m= 5,000,000  basic_vc=490.9ms  randomized_vc=540.7ms  natural_coloring=2159.1ms  sl_coloring=8171.2ms
+[  798.1 s] E4 G(n,5n) n=10,000 done
+[  807.4 s] E4 G(n,5n) n=100,000 done
+[  906.4 s] E4 G(n,5n) n=1,000,000 done
+[  907.3 s] E4 frb30-15-1 clq done
+[  919.9 s] E4 frb59-26-1 clq done
+[  920.0 s] E5 worst cases done
+[  920.0 s] done

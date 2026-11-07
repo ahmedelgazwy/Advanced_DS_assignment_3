@@ -1,0 +1,13 @@
+experiment,algorithm,slope
+FRB (both forms),basic_vc,1.0896
+FRB (both forms),randomized_vc,1.0642
+FRB (both forms),natural_coloring,0.9426
+FRB (both forms),sl_coloring,1.0058
+FRB (both forms),sl_order,0.9980
+FRB (both forms),sl_greedy,0.9497
+"random G(n, 5n)",basic_vc,1.0078
+"random G(n, 5n)",randomized_vc,1.0094
+"random G(n, 5n)",natural_coloring,1.0572
+"random G(n, 5n)",sl_coloring,1.0747
+"random G(n, 5n)",sl_order,1.0465
+"random G(n, 5n)",sl_greedy,1.0720
